@@ -1,0 +1,343 @@
+<?php
+
+        ini_set('max_execution_time', 83000);
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
+
+	date_default_timezone_set('America/Argentina/Buenos_Aires');
+	include('function.php');
+	include("zconect.php");
+	include 'class/class.smtp.php';
+	require 'class/class.phpmailer.php';
+
+    $vdate = date('Y-m-d');
+    $vhrs = date('H:i:s');
+
+   if(isset($_GET['opt'])){
+	switch($_GET['opt']){
+		case 'u':
+		break;
+
+		case 's':
+		break;
+
+		case 'b':
+		break;
+
+		case 'cl':
+		break;
+
+		case 'aw':
+		break;
+	  }
+   }
+   if(isset($_POST['t'])){
+              include('categact.php');
+              include('articact.php');
+              include('proveedact.php');
+              include('condivaact.php');
+              include('inventarioact.php');
+	switch($_POST['t']){
+		case 'showcateg':
+            $divdetail='';            
+            $file = fopen('categ.php', "r");
+            if ($file) {
+                while (($line = fgets($file)) !== false) {
+                        $divdetail.= $line;
+                }
+                if (!feof($file)) {
+                    echo "Error: EOF not found\n";
+                }
+                fclose($file);
+            }
+            $filejs = fopen('js/categ.js', "r");
+            if ($filejs) {
+                while (($linejs = fgets($filejs)) !== false) {
+                        $divdetail.= $linejs;
+                }
+                if (!feof($filejs)) {
+                    echo "Error: EOF not found\n";
+                }
+                fclose($filesj);
+            }
+			$result_array=array("vform"=>$divdetail);
+			echo json_encode($result_array);
+		break;
+		case 'showciva':
+            $divdetail='';            
+            $file = fopen('condiva.php', "r");
+            if ($file) {
+                while (($line = fgets($file)) !== false) {
+                        $divdetail.= $line;
+                }
+                if (!feof($file)) {
+                    echo "Error: EOF not found\n";
+                }
+                fclose($file);
+            }
+            $filejs = fopen('js/condiva.js', "r");
+            if ($filejs) {
+                while (($linejs = fgets($filejs)) !== false) {
+                        $divdetail.= $linejs;
+                }
+                if (!feof($filejs)) {
+                    echo "Error: EOF not found\n";
+                }
+                fclose($filejs);
+            }
+			$result_array=array("vform"=>$divdetail);
+			echo json_encode($result_array);
+		break;
+
+		case 'showprov':
+            $divdetail='';            
+            $file = fopen('proveed.php', "r");
+            if ($file) {
+                while (($line = fgets($file)) !== false) {
+                        $divdetail.= $line;
+                }
+                if (!feof($file)) {
+                    echo "Error: EOF not found\n";
+                }
+                fclose($file);
+            }
+            $filejs = fopen('js/proveed.js', "r");
+            if ($filejs) {
+                while (($linejs = fgets($filejs)) !== false) {
+                        $divdetail.= $linejs;
+                }
+                if (!feof($filejs)) {
+                    echo "Error: EOF not found\n";
+                }
+                fclose($filejs);
+            }
+
+            $qrysel = "SELECT condiva, desccond FROM condiva ORDER BY desccond ";
+            $vdatac='';    
+            $vcondiva='<select name="vcondiva" id="vcondiva" class ="select2" style="width:300px;font-size:14px;">';
+            $vcondiva.='<option value="0">CONDICION IVA</option>';
+            $resqry = $db->ObjectBuilder()->rawQuery ($qrysel);
+            foreach ($resqry as $xkey => $xvalue) 
+            {
+              $vcondiva.='<option value="'.$xvalue->condiva.'">'.$xvalue->desccond.'</option>';
+            }
+            $vcondiva.='</select>';
+
+//SELECT locid, CONCAT(loccp,' - ',locnom) AS Localcp FROM localidad WHERE 1
+            $vloc='<select name="vlocid" id="vlocid" class ="select2" style="width:250px;font-size:14px;" onchange="selloc(this.value)"><option value="0">Localidad</option>';
+            $qryloc = "SELECT locid, CONCAT(loccp,' - ',locnom) AS Localcp FROM localidad ORDER BY loccp ";
+            $resloc = $db->ObjectBuilder()->rawQuery ($qryloc);
+            foreach ($resloc as $lkey => $lvalue) 
+            {
+              $vloc.='<option value="'.$lvalue->locid.'">'.$lvalue->Localcp.'</option>';
+            }
+            $vloc.='</select>';
+
+
+			$result_array=array("vform"=>$divdetail,"vcondiva"=>$vcondiva,"vloc"=>$vloc);
+			echo json_encode($result_array);
+		break;
+
+		case 'showartic':
+            $divdetail='';            
+            $file = fopen('artic.php', "r");
+            if ($file) {
+                while (($line = fgets($file)) !== false) {
+                        $divdetail.= $line;
+                }
+                if (!feof($file)) {
+                    echo "Error: EOF not found\n";
+                }
+                fclose($file);
+            }
+            $filejs = fopen('js/artic.js', "r");
+            if ($filejs) {
+                while (($linejs = fgets($filejs)) !== false) {
+                        $divdetail.= $linejs;
+                }
+                if (!feof($filejs)) {
+                    echo "Error: EOF not found\n";
+                }
+                fclose($filejs);
+            }
+
+            $qrysel = "SELECT categid, categdescr FROM categorias ORDER BY categdescr ";
+            $vdatac='';    
+            $vcateg='<select name="qcateg" id="qcateg" class ="select2" style="width:200px" onchange="selcateg(this.value)">';
+            $vcateg.='<option value="0">Categorias</option>';
+            $vicateg='<select name="icateg" id="icateg" class ="select2" style="width:200px" onchange="selicateg(this.value)">';
+            $vicateg.='<option value="0">Categorias</option>';
+            $resqry = $db->ObjectBuilder()->rawQuery ($qrysel);
+            foreach ($resqry as $xkey => $xvalue) 
+            {
+              $vcateg.='<option value="'.$xvalue->categid.'">'.$xvalue->categdescr.'</option>';
+              $vicateg.='<option value="'.$xvalue->categid.'">'.$xvalue->categdescr.'</option>';
+            }
+            $vcateg.='</select>';
+            $vicateg.='</select>';
+
+            $vsubcat='<select name="qsubcat" id="qsubcat" class ="select2" style="width:200px" onchange="selsubcateg(this.value)">';
+            $vsubcat.='<option value="0">Sub-Categorias</option>';
+            $vsubcat.='</select>';
+            $visubcat='<select name="isubcat" id="isubcat" class ="select2" style="width:200px">';
+            $visubcat.='<option value="0">Sub-Categorias</option>';
+            $visubcat.='</select>';
+            //SELECT un_id, un_nom FROM unidades WHERE 1
+            $qryuni = "SELECT un_id, un_nom FROM unidades  ORDER BY un_nom ";
+            $viunidcpra='<select name="iunidcpra" id="iunidcpra" class ="select2" style="width:130px"><option value="0">Seleccione</option>';
+            $vistkunid='<select name="istkunid" id="istkunid" class ="select2" style="width:130px"><option value="0">Seleccione</option>';
+            $resuni = $db->ObjectBuilder()->rawQuery ($qryuni);
+            foreach ($resuni as $ukey => $uvalue) 
+            {
+              $viunidcpra.='<option value="'.$uvalue->un_id.'">'.$uvalue->un_nom.'</option>';
+              $vistkunid.='<option value="'.$uvalue->un_id.'">'.$uvalue->un_nom.'</option>';
+            }
+            $viunidcpra.='</select>';
+            $vistkunid.='</select>';
+
+			$result_array=array("vform"=>$divdetail,"vcateg"=>$vcateg,"vsubcat"=>$vsubcat,"vicateg"=>$vicateg,
+                                "visubcat"=>$visubcat,"viunidcpra"=>$viunidcpra,"vistkunid"=>$vistkunid);
+			echo json_encode($result_array);
+		break;
+
+		case 'showinventario':
+            $divdetail='';            
+            $file = fopen('inventario.php', "r");
+            if ($file) {
+                while (($line = fgets($file)) !== false) {
+                        $divdetail.= $line;
+                }
+                if (!feof($file)) {
+                    echo "Error: EOF not found\n";
+                }
+                fclose($file);
+            }
+            $filejs = fopen('js/inventario.js', "r");
+            if ($filejs) {
+                while (($linejs = fgets($filejs)) !== false) {
+                        $divdetail.= $linejs;
+                }
+                if (!feof($filejs)) {
+                    echo "Error: EOF not found\n";
+                }
+                fclose($filejs);
+            }
+
+            $qrysel = "SELECT categid, categdescr FROM categorias ORDER BY categdescr ";
+            $vdatac='';    
+            $vcateg='<select name="qcateg" id="qcateg" class ="select2" style="width:200px" onchange="selcateg(this.value)">';
+            $vcateg.='<option value="0">Categorias</option>';
+            $resqry = $db->ObjectBuilder()->rawQuery ($qrysel);
+            foreach ($resqry as $xkey => $xvalue) 
+            {
+              $vcateg.='<option value="'.$xvalue->categid.'">'.$xvalue->categdescr.'</option>';
+            }
+            $vcateg.='</select>';
+
+            $vsubcat='<select name="qsubcat" id="qsubcat" class ="select2" style="width:200px" onchange="selsubcateg(this.value)">';
+            $vsubcat.='<option value="0">Sub-Categorias</option>';
+            $vsubcat.='</select>';
+
+			$result_array=array("vform"=>$divdetail,"vcateg"=>$vcateg,"vsubcat"=>$vsubcat);
+			echo json_encode($result_array);
+		break;
+
+		case 'loginusr':
+                        $usremail=$_POST["usremail"];
+                        $usrpass=$_POST["usrpass"];
+                        $password = md5($usrpass);
+                        $usr_pass = '';
+                        $vdate = date('Y-m-d');
+//SELECT usr_id, usr_email, usr_pass, usr_name, usr_rolid, usr_date, usr_lastlogin FROM users WHERE 1
+                        $usrqry="SELECT usr_id, usr_email, usr_name, usr_pass, usr_rolid, usr_date, usr_dptid 
+                                   FROM users 
+                                  WHERE usr_email = '".$usremail."'
+                                 ";
+                        $usrok = 'NO';
+                        $deptid = 0;
+                        $deptname = '';
+                        $usrres = $db->ObjectBuilder()->rawQuery ($usrqry);
+                        if(count($usrres) > 0){
+                           foreach ($usrres as $rkey => $rvalue) 
+                           { 
+                             $usr_pass = $rvalue->usr_pass; 
+                            }
+
+                           if($usr_pass == $password)
+                              {
+                                  $usrok = 'YES';
+                                  $_SESSION['user_session'] = $rvalue->usr_name;
+                                  $_SESSION['uid_session'] = $rvalue->usr_id;
+                                  $_SESSION['rol_session'] = $rvalue->usr_rolid;
+                                  $_SESSION['date_session'] = $vdate;
+                                  $deptid = $rvalue->usr_dptid;
+                                  $_SESSION['dptid_session'] = $deptid;
+                                  $datusr = Array ("usr_lastlogin" => $vdate);
+                                  $db->where ('usr_id', $rvalue->usr_id);
+                                  $db->update('users', $datusr);
+                              }
+                        }
+
+                        $vsel='';
+                        //echo "email or password does not exist."; // wrong details 
+			$result_array = array('usrok'=>$usrok,'pass1'=>$password,'pass2'=>$usr_pass,'rol'=>$_SESSION['rol_session']);
+			echo json_encode($result_array);
+		break;
+
+		case 'logout':
+                        $vdate = '0000-00-00';
+                        $datusr = Array ("usr_lastlogin" => $vdate);
+                        $db->where ('usr_id', $_SESSION['uid_session']);
+                        $db->update('users', $datusr);
+                        $usrok = 'YES';
+                        $_SESSION['user_session'] = '';
+                        $_SESSION['uid_session'] = '';
+                        session_destroy();
+			$result_array = array('usrok'=>$usrok);
+			echo json_encode($result_array);
+		break;
+		case 'chksess':
+                        $vdate = date('Y-m-d');
+                        $usrqry="SELECT usr_id, usr_email, usr_name, usr_pass, usr_rolid, usr_date, usr_lastlogin 
+                                   FROM users 
+                                  WHERE usr_id = ".$_SESSION['uid_session']."
+                                 ";
+                        $usrok = 'NO';
+                        $usrres = $db->ObjectBuilder()->rawQuery ($usrqry);
+                        if(count($usrres) > 0){
+                           foreach ($usrres as $rkey => $rvalue) 
+                           {
+                              if($rvalue->usr_lastlogin == $vdate){
+                                 $usrok = 'OK';
+                              }     
+                           }
+                        } 
+			$result_array = array('usrok'=>$usrok);
+			echo json_encode($result_array);
+		break;
+
+		case 'reguser':
+                        $usrname=$_POST["usrname"];
+                        $usremail=$_POST["usremail"];
+                        $usrpass=$_POST["usrpass"];
+                        $password = md5($usrpass);
+                        $vdate = date('Y-m-d H-i-s');
+//SELECT usr_id, usr_email, usr_pass, usr_name, usr_rolid, usr_date FROM users WHERE 1
+                     $datusr = Array ("usr_email" => $usremail,
+                                       "usr_pass" => $password,
+                                       "usr_name" => $usrname,
+                                       "usr_date" => $vdate,
+                                       "usr_rolid" => 1
+                                      );
+                     $usrid = $db->insert ('users', $datusr);
+                     $_SESSION['user_session'] = $usrname;
+                     $_SESSION['uid_session'] = $usrid;
+                     $usrok = 'YES';
+                     $result_array = array('usrok'=>$usrok);
+                     echo json_encode($result_array);
+		break;
+
+	}
+   } //post
+?>

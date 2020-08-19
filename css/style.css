@@ -1,0 +1,282 @@
+@font-face {
+  font-family: "HelveticaNeueLTCom-Bd";
+  src: url("./fonts/HelveticaNeueLTCom-Bd.eot"); /* IE9 Compat Modes */
+  src: url("./fonts/HelveticaNeueLTCom-Bd.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("./fonts/HelveticaNeueLTCom-Bd.otf") format("opentype"), /* Open Type Font */
+    url("./fonts/HelveticaNeueLTCom-Bd.svg") format("svg"), /* Legacy iOS */
+    url("./fonts/HelveticaNeueLTCom-Bd.ttf") format("truetype"), /* Safari, Android, iOS */
+    url("./fonts/HelveticaNeueLTCom-Bd.woff") format("woff"), /* Modern Browsers */
+    url("./fonts/HelveticaNeueLTCom-Bd.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HelveticaNeueLTCom-Th";
+  src: url("./fonts/HelveticaNeueLTCom-Th.eot"); /* IE9 Compat Modes */
+  src: url("./fonts/HelveticaNeueLTCom-Th.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("./fonts/HelveticaNeueLTCom-Th.otf") format("opentype"), /* Open Type Font */
+    url("./fonts/HelveticaNeueLTCom-Th.svg") format("svg"), /* Legacy iOS */
+    url("./fonts/HelveticaNeueLTCom-Th.ttf") format("truetype"), /* Safari, Android, iOS */
+    url("./fonts/HelveticaNeueLTCom-Th.woff") format("woff"), /* Modern Browsers */
+    url("./fonts/HelveticaNeueLTCom-Th.woff2") format("woff2"); /* Modern Browsers */
+  font-weight: normal;
+  font-style: normal;
+}
+.nologin {
+    display: none;
+}
+.udsg {
+    display: none !important;
+}
+.ulogin {
+    display: block;
+}
+
+.uadm {
+    display: block !important;
+}
+
+button .ulogin {
+    margin-left: 20px;
+}
+
+#signup-modal-content, #forgot-password-modal-content{
+	display: none;
+}
+		
+/** validation */
+		
+input.parsley-error		{    
+    border-color:#843534;
+    box-shadow: none;
+}
+input.parsley-error:focus{    
+    border-color:#843534;
+    box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #ce8483
+}
+.parsley-errors-list.filled {
+    opacity: 1;
+    color: #a94442;
+    display: none;
+}
+
+.leftdecl {
+        font-family: 'HelveticaNeueLTCom-Bd';
+        font-size: 90px;
+        color:#FFFFFF;
+        padding: 10px;
+        margin-bottom:25px;
+}
+.leftbill {
+        font-family: 'HelveticaNeueLTCom-Bd';
+        font-size: 70px;
+        color:#FFFFFF;
+        padding: 10px;
+        margin-bottom:25px;
+}
+.leftpay {
+       /* font-family: 'HelveticaNeueLTCom-Bd';*/
+        font-size: 6em;
+        font-weight:bold;
+        color:#FFFFFF;
+        padding: 10px;
+        margin-bottom:43px;
+        text-align:center
+}
+.leftbillb {
+        font-family: 'HelveticaNeueLTCom-Th';
+        font-size: 15px;
+        color:#FFFFFF;
+        padding: 0px;
+        margin-bottom:25px;
+}
+
+.welcome {
+        font-family: 'HelveticaNeueLTCom-Bd';
+        font-size: 80px;
+        color:#808184;
+        padding: 10px;
+        margin-bottom:35px;
+}
+.pwait {
+        /*font-family: 'HelveticaNeueLTCom-Bd';*/
+        font-size: 1.5em;
+        font-weight:bold;
+        color:#808184;
+        line-height:25px;
+        /*padding: 10px;*/
+        margin-bottom:25px;
+}
+.dataentry{
+        padding-left: 0px;
+}
+
+.dataentry input, textarea {
+        background-color:#E5E5E5 !important;
+        color:#000000 !important;
+}
+
+.btn-accpt{
+        background-color:#9B9C9F;
+        color:#FFFFFF;
+}
+
+.btn-accpt:hover{
+        background-color:#808184;
+        color:#FFFFFF;
+}
+
+/*#9B9C9F
+  #808184*/
+
+table{
+	width:100%;
+}
+table td {
+	font-size: 11px;
+}
+table td label{
+	font-size: 14px;
+}
+#container2{
+    width:100%;
+}
+.content2{
+    padding:0 !important;
+    text-align:left;
+    padding-bottom:20px;
+    font-size:14px;
+    line-height:1em;
+    color:#8C8C8C;
+}
+.content2 .form-group{
+    margin-bottom:10px;
+}
+
+.img-part-box {
+    background-color:#E5E5E5;
+    border: 0px solid rgb(0, 0, 0); 
+    float: none; 
+    height: 100px; 
+    width: 515px;
+    margin: 0 auto;
+    margin-bottom:30px;
+}
+
+.img-box {
+    background-color:#E5E5E5;
+    border: 0px solid rgb(0, 0, 0); 
+    float: none; 
+    height: 500px; 
+    width: 500px;
+    margin: 0 auto;
+    text-align:center;
+}
+
+.vertical-center {
+  height:100%;
+  width:100%;
+
+  text-align: center;  /* align the inline(-block) elements horizontally */
+  font: 0/0 a;         /* remove the gap between inline(-block) elements */
+}
+
+.vertical-center:before {    /* create a full-height inline block pseudo=element */
+  content: " ";
+  display: inline-block;
+  vertical-align: middle;    /* vertical alignment of the inline element */
+  height: 100%;
+}
+
+.vertical-center > .container {
+  max-width: 100%;
+
+  display: inline-block;
+  vertical-align: middle;  /* vertical alignment of the inline element */
+                           /* reset the font property */
+  /*font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+}
+
+.imgart {
+    /*height: 100px; */
+    width: 515px;
+}
+.versionsPanel{
+  padding: 5%;
+  background-color: #444444;
+  border-color: #222222;
+  color: #fff;
+}
+
+.versionPanelHeading{
+    border-bottom: 1px solid;
+    text-transform: uppercase;
+    padding-bottom: 2%;
+}
+
+.versionsPanel ul{
+    list-style: decimal;
+    margin: 0;
+    padding: 5% 0 0 6%;
+}
+
+.versionsPanel ul li{
+    padding: 0 2% 2% 0;
+    width: 100%;
+}
+
+.versionsPanel ul li a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.versionsPanel ul li a:hover{
+    color: #65cea7;
+    text-decoration: none;
+}
+.currentArtwork {
+    color: #65cea7 !important;
+}
+.versionDataPanel{
+    float: left;
+    margin-left: 2%;
+}
+.artworkPanelTitle a {
+    color: #fff;
+}
+.artworkPanelTitle a:hover{
+    text-decoration: none !important;
+}
+a.awcontrol {
+   pointer-events: none;
+   cursor: default;
+}    
+
+.typeahead { 
+   border-radius: 4px;
+   padding: 8px 12px;
+   max-width: 300px;
+   min-width: 290px;
+}
+.tt-menu { 
+   width:300px; 
+}
+ul.typeahead{
+   margin:0px;
+   padding:10px 0px;
+}
+ul.typeahead.dropdown-menu li a {
+   padding: 10px !important;
+   border-bottom:#CCC 1px solid;
+   /*color:#FFF;*/
+}
+ul.typeahead.dropdown-menu li:last-child a { 
+   border-bottom:0px !important; 
+}
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover {
+   text-decoration: none;
+   background-color: #1f3f41;
+   color:#FFF;
+   outline: 0;
+}
