@@ -98,7 +98,8 @@
                                                                                     </div>
                                                                                     <div class="col-lg-3 form-group">
                                                                                         <label>Codigo Proveedor</label>
-                                                                                        <input class="form-control" id="vcodprov" placeholder="" value="" readonly="readonly">
+                                                                                        <input class="form-control" id="vcodprov" placeholder="" value="" type="number" name="quantity" min="1" max="999999999999999" step="1" maxlength="15">
+                                                                                        <!-- <input class="form-control" id="vcodprov" placeholder="" value="" readonly="readonly"> -->
                                                                                     </div>
                                                                                   </div>
                                                                                 </td>
@@ -122,7 +123,7 @@
                                                                                     </div>
                                                                                     <div class="col-lg-2 form-group">
                                                                                         <label>Consumo Capt.</label>
-                                                                                        <input class="form-control" id="iconscapt" placeholder="0" value="" readonly="readonly">
+                                                                                        <input class="form-control" id="iconscapt" placeholder="" value="0" readonly="readonly">
                                                                                     </div>
                                                                                   </div>
                                                                                 </td>
