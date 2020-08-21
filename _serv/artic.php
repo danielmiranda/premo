@@ -96,11 +96,24 @@
                                                                                         <label> . </label>
                                                                                        <span id="visubcat" style="margin-right:20px;"><select name="isubcat" id="isubcat" class ="select2" style="width:200px"><option value="0">Sub-Categorias</option></select></span>
                                                                                     </div>
+                                                                                  </div>
+                                                                                </td>
+                                                                                <td align="center" style="vertical-align:middle;font-size:14px" id="ctddel"></td>
+                                                                              </tr>
+                                                                              <tr>
+                                                                                <td style="text-align:right;vertical-align:middle;font-size:14px"></td>
+                                                                                <td id="cattd">
+                                                                                  <div class="col-lg-12">
                                                                                     <div class="col-lg-3 form-group">
-                                                                                        <label>Codigo Proveedor</label>
-                                                                                        <input class="form-control" id="vcodprov" placeholder="" value="" type="number" name="quantity" min="1" max="999999999999999" step="1" maxlength="15">
+                                                                                        <label>Código de Artículo</label>
+                                                                                        <input class="form-control" id="codarticulo" placeholder="" value="0" type="number" name="quantity" min="1" max="999999999999999" step="1" maxlength="15">
+                                                                                    </div>
+                                                                                    <div class="col-lg-3 form-group">
+                                                                                        <label>Código Proveedor</label>
+                                                                                        <input class="form-control" id="vcodprov" placeholder="" value="" type="text" name="vcodprov1" maxlength="30">
                                                                                         <!-- <input class="form-control" id="vcodprov" placeholder="" value="" readonly="readonly"> -->
                                                                                     </div>
+
                                                                                   </div>
                                                                                 </td>
                                                                                 <td align="center" style="vertical-align:middle;font-size:14px" id="ctddel"></td>

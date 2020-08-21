@@ -5,6 +5,7 @@
                      $descrartic=$_POST['descrartic'];
                      $stockmin=$_POST['stockmin'];
                      $codprov=$_POST['codprov'];
+                     $codarticulo=$_POST['codarticulo'];
                      $icateg=$_POST['icateg'];
                      $isubcat=$_POST['isubcat'];
                      $iunidcpra=$_POST['iunidcpra'];
@@ -14,9 +15,15 @@
                      $diasrecu=$_POST['diasrecu'];
                      $recumarg=$_POST['recumarg'];
                      $iprecart=$_POST['iprecart'];
+
+                     if( $codarticulo == ''){
+                      $codarticulo = 0;
+                     }
+                     
                      $datartic = Array ("descrartic" => $descrartic,
                                         "stockmin" => $stockmin,
                                         "art_cod_prov" => $codprov,
+                                        "codarticulo" => $codarticulo,
                                         "categid" => $icateg,
                                         "sctid" => $isubcat,
                                         "art_cons_capt" => $iconscapt,
@@ -39,6 +46,7 @@
                      $descrartic=$_POST['descrartic'];
                      $stockmin=$_POST['stockmin'];
                      $codprov=$_POST['codprov'];
+                     $codarticulo=$_POST['codarticulo'];
                      $icateg=$_POST['icateg'];
                      $isubcat=$_POST['isubcat'];
                      $iunidcpra=$_POST['iunidcpra'];
@@ -51,6 +59,7 @@
                      $datartic = Array ("descrartic" => $descrartic,
                                         "stockmin" => $stockmin,
                                         "art_cod_prov" => $codprov,
+                                        "codarticulo" => $codarticulo,
                                         "categid" => $icateg,
                                         "sctid" => $isubcat,
                                         "art_cons_capt" => $iconscapt,
@@ -162,6 +171,7 @@
                                             "stockmin"=>$stockmin,
                                             "consprom"=>$consprom,
                                             "vcodprov"=>$art_cod_prov,
+                                            "codarticulo"=>$codarticulo,
                                             "stockart"=>$stockart
                                            );
 			echo json_encode($result_array);

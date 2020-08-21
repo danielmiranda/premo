@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ContentFilters</key>
+	<dict/>
+	<key>auto_connect</key>
+	<true/>
+	<key>data</key>
+	<dict>
+		<key>connection</key>
+		<dict>
+			<key>colorIndex</key>
+			<integer>1</integer>
+			<key>database</key>
+			<string>premo</string>
+			<key>host</key>
+			<string>127.0.0.1</string>
+			<key>kcid</key>
+			<string>-5645125292847315318</string>
+			<key>name</key>
+			<string>MySQL Localhost</string>
+			<key>rdbms_type</key>
+			<string>mysql</string>
+			<key>sslCACertFileLocation</key>
+			<string></string>
+			<key>sslCACertFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslCertificateFileLocation</key>
+			<string></string>
+			<key>sslCertificateFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>sslKeyFileLocation</key>
+			<string></string>
+			<key>sslKeyFileLocationEnabled</key>
+			<integer>0</integer>
+			<key>type</key>
+			<string>SPTCPIPConnection</string>
+			<key>useSSL</key>
+			<integer>0</integer>
+			<key>user</key>
+			<string>root</string>
+		</dict>
+		<key>session</key>
+		<dict>
+			<key>connectionEncoding</key>
+			<string>utf8</string>
+			<key>contentFilter</key>
+			<dict/>
+			<key>contentPageNumber</key>
+			<integer>5</integer>
+			<key>contentSelection</key>
+			<data>
+			YnBsaXN0MDDUAQIDBAUGOTpYJHZlcnNpb25YJG9iamVjdHNZJGFy
+			Y2hpdmVyVCR0b3ASAAGGoK0HCBUWFxgZHSQoLDE2VSRudWxs0wkK
+			CwwQFFdOUy5rZXlzWk5TLm9iamVjdHNWJGNsYXNzow0OD4ACgAOA
+			BKMREhOABYAGgAiADFR0eXBlVHJvd3NUa2V5c18QJlNlbGVjdGlv
+			bkRldGFpbFR5cGVQcmltYXJ5S2V5ZWREZXRhaWxz0wkKCxobHKCg
+			gAfSHh8gIVokY2xhc3NuYW1lWCRjbGFzc2VzXxATTlNNdXRhYmxl
+			RGljdGlvbmFyeaMgIiNcTlNEaWN0aW9uYXJ5WE5TT2JqZWN00goL
+			JSehJoAJgAvSCykqK1lOUy5zdHJpbmeAClhjb2RhcnRpZNIeHy0u
+			XxAPTlNNdXRhYmxlU3RyaW5noy0vMFhOU1N0cmluZ1hOU09iamVj
+			dNIeHzIzXk5TTXV0YWJsZUFycmF5ozI0NVdOU0FycmF5WE5TT2Jq
+			ZWN00h4fIjeiIjhYTlNPYmplY3RfEA9OU0tleWVkQXJjaGl2ZXLR
+			OzxUZGF0YYABAAgAEQAaACMALQAyADcARQBLAFIAWgBlAGwAcABy
+			AHQAdgB6AHwAfgCAAIIAhwCMAJEAugDBAMIAwwDFAMoA1QDeAPQA
+			+AEFAQ4BEwEVARcBGQEeASgBKgEzATgBSgFOAVcBYAFlAXQBeAGA
+			AYkBjgGRAZoBrAGvAbQAAAAAAAACAQAAAAAAAAA9AAAAAAAAAAAA
+			AAAAAAABtg==
+			</data>
+			<key>contentSortColIsAsc</key>
+			<true/>
+			<key>contentViewport</key>
+			<string>{{317, 5333}, {1123, 517}}</string>
+			<key>isToolbarVisible</key>
+			<true/>
+			<key>queries</key>
+			<string>ALTER TABLE articulos ADD codarticulo int
+</string>
+			<key>table</key>
+			<string>articulos</string>
+			<key>view</key>
+			<string>SP_VIEW_CUSTOMQUERY</string>
+			<key>windowVerticalDividerPosition</key>
+			<real>228</real>
+		</dict>
+	</dict>
+	<key>encrypted</key>
+	<false/>
+	<key>format</key>
+	<string>connection</string>
+	<key>queryFavorites</key>
+	<array/>
+	<key>queryHistory</key>
+	<array>
+		<string>CREATE TRIGGER InsertArticulosCodArticulo
+BEFORE INSERT 
+ON articulos FOR EACH ROW 
+BEGIN
+    IF new.codarticulo IS NULL OR new.codarticulo = 0 OR new.codarticulo = ''
+    	THEN
+        SET @auto_id = (SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE() ); 
+        SET NEW.codarticulo = @auto_id;
+    END IF;
+END</string>
+		<string>DROP TRIGGER IF EXISTS InsertArticulosCodArticulo</string>
+		<string>CREATE TRIGGER InsertArticulosCodArticulo
+BEFORE INSERT 
+ON articulos FOR EACH ROW 
+BEGIN
+    IF new.codarticulo IS NULL
+    	THEN
+        SET @auto_id = (SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE() ); 
+        SET NEW.codarticulo = @auto_id;
+    END IF;
+END</string>
+		<string>CREATE TRIGGER InsertArticulosCodArticulo
+BEFORE INSERT 
+ON articulos FOR EACH ROW 
+BEGIN
+    IF new.codarticulo IS NULL
+    	THEN
+        SET @auto_id = (SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE() ); 
+        SET NEW.codarticulo = @auto_id;
+    END IF;
+END;
+DELIMITER;</string>
+		<string>DROP TRIGGER IF EXISTS InsertArticulosCodArticulo
+
+CREATE TRIGGER InsertArticulosCodArticulo
+BEFORE INSERT 
+ON articulos FOR EACH ROW 
+BEGIN
+    IF new.codarticulo IS NULL
+    	THEN
+        SET @auto_id = (SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE() ); 
+        SET NEW.codarticulo = @auto_id;
+    END IF;
+END</string>
+		<string>CREATE TRIGGER InsertArticulosCodArticulo
+BEFORE INSERT 
+ON articulos FOR EACH ROW 
+BEGIN
+    IF new.codarticulo IS NULL
+        SELECT @auto_id = (SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE() ); 
+        SET NEW.codarticulo = @auto_id;
+    END IF;
+END</string>
+		<string>CREATE TRIGGER InsertArticulosCodArticulo
+BEFORE INSERT 
+ON articulos FOR EACH ROW 
+BEGIN
+    IF new.codarticulo IS NULL
+        SET @auto_id = (SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE() );
+SET NEW.codarticulo = @auto_id;
+END IF</string>
+		<string>CREATE TRIGGER InsertArticulosCodArticulo
+BEFORE INSERT 
+ON 'articulos' FOR EACH ROW 
+BEGIN
+    IF new.codarticulo IS NULL
+        SET @auto_id = (SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE() ); 
+        SET NEW.codarticulo = @auto_id;
+    END IF;
+END</string>
+		<string>CREATE TRIGGER 'InsertArticulosCodArticulo'
+BEFORE INSERT 
+ON 'articulos' FOR EACH ROW 
+BEGIN
+    IF new.codarticulo IS NULL
+        SET @auto_id = (SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE() ); 
+        SET NEW.codarticulo = @auto_id;
+    END IF;
+END</string>
+		<string>DROP TRIGGER IF EXISTS 'InsertArticulosCodArticulo'
+
+CREATE TRIGGER 'InsertArticulosCodArticulo'
+BEFORE INSERT 
+ON 'articulos' FOR EACH ROW 
+BEGIN
+    IF new.codarticulo IS NULL
+        SET @auto_id = (SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE() ); 
+        SET NEW.codarticulo = @auto_id;
+    END IF;
+END</string>
+		<string>DROP TRIGGER IF EXISTS InsertArticulosCodArticulo 
+
+CREATE TRIGGER InsertArticulosCodArticulo 
+BEFORE INSERT 
+ON articulos FOR EACH ROW 
+BEGIN
+    IF new.codarticulo IS NULL
+        SET @auto_id = (SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE() ); 
+        SET NEW.codarticulo = @auto_id;
+    END IF;
+END;
+DELIMITER;</string>
+		<string>DROP TRIGGER IF EXISTS InsertArticulosCodArticulo 
+CREATE TRIGGER InsertArticulosCodArticulo BEFORE INSERT ON articulos
+FOR EACH ROW BEGIN
+    IF new.codarticulo IS NULL
+        SET @auto_id = (SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE() ); 
+        SET NEW.codarticulo = @auto_id;
+    END IF;
+END;</string>
+		<string>DROP TRIGGER IF EXISTS InsertArticulosCodArticulo //
+CREATE TRIGGER InsertArticulosCodArticulo BEFORE INSERT ON articulos
+FOR EACH ROW BEGIN
+    IF new.codarticulo IS NULL
+        SET @auto_id = (SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE() );
+SET NEW.codarticulo = @auto_id;
+END IF;
+END</string>
+		<string>DROP TRIGGER IF EXISTS InsertArticulosCodArticulo;
+CREATE TRIGGER InsertArticulosCodArticulo BEFORE INSERT ON articulos
+FOR EACH ROW BEGIN
+    IF new.codarticulo IS NULL
+        SET @auto_id = (SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE() ); 
+        SET NEW.codarticulo = @auto_id;
+    END IF;
+END;;
+DELIMITER;</string>
+		<string>SET @auto_id = (SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE() );
+SELECT @auto_id</string>
+		<string>DROP TRIGGER IF EXISTS InsertArticulosCodArticulo;
+CREATE TRIGGER InsertArticulosCodArticulo BEFORE INSERT ON articulos
+FOR EACH ROW BEGIN
+    IF new.codarticulo IS NULL
+        SET @auto_id = (SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE() ); 
+        set NEW.codarticulo = @auto_id;
+    ENF IF;
+END;;
+DELIMITER;</string>
+		<string>SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE()</string>
+		<string>SELECT DATABASE()</string>
+		<string>DELIMITER;
+
+SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE()</string>
+		<string>DROP TRIGGER IF EXISTS InsertArticulosCodArticulo;
+CREATE TRIGGER InsertArticulosCodArticulo BEFORE INSERT ON articulos
+FOR EACH ROW BEGIN
+    IF new.codarticulo IS NULL
+        set @auto_id = (SELECT AUTO_INCREMENT FROM information_schema.TABLES
+                         WHERE TABLE_NAME='articulos' AND TABLE_SCHEMA=DATABASE() ); 
+        set NEW.codarticulo = @auto_id;
+    ENF IF;
+END;</string>
+	</array>
+	<key>rdbms_type</key>
+	<string>mysql</string>
+	<key>rdbms_version</key>
+	<string>5.5.5-10.4.6-MariaDB</string>
+	<key>version</key>
+	<integer>1</integer>
+</dict>
+</plist>

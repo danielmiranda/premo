@@ -48,6 +48,8 @@
                                              var iprecart = $('#iprecart').val();
                                              var stockart = $('#vstockart').val();
                                              var codprov  = $('#vcodprov').val();
+                                             var codarticulo  = $('#codarticulo').val();
+                                             console.log(codarticulo);
 
                                              var rdescrartic = document.getElementById('vdescrartic');
                                              var rprecart = document.getElementById('iprecart');
@@ -60,6 +62,7 @@
                                                            data: {t:'savenewart',
                                                                   descrartic:descrartic,
                                                                   codprov:codprov,
+                                                                  codarticulo:codarticulo,
                                                                   icateg:icateg,
                                                                   isubcat:isubcat,
                                                                   iconscapt:iconscapt,
@@ -108,6 +111,7 @@
                                                             $('#vstockmin').val(resp.stockmin);
                                                             $('#vconsavg').val(resp.consprom);
                                                             $('#vcodprov').val(resp.vcodprov);
+                                                            $('#codarticulo').val(resp.codarticulo);
                                                             $("#icateg").select2();
                                                             $("#isubcat").select2();
                                                             $("#iunidcpra").select2();
@@ -116,6 +120,7 @@
                                                             $("#vdiasrecu").removeAttr("readonly");
                                                             $("#vrecumarg").removeAttr("readonly");
                                                             $("#vcodprov").removeAttr("readonly");
+                                                            $("#codarticulo").removeAttr("readonly");
                                                             $('#artictdsave').html('<button id="saveartic" class="btn btn-primary" type="button" onclick="saveupdart()"><i class="fa fa-pencil-square-o"></i> Guardar</button>');
                                                             dcmaxrow = resp.reng;
                                                             $('.menu li.active').removeClass('active');
@@ -145,6 +150,7 @@
                                              var stockart = $('#vstockart').val();
                                              var stockmin = $('#vstockmin').val();
                                              var codprov  = $('#vcodprov').val();
+                                             var codarticulo  = $('#codarticulo').val();
 
                                              var rdescrartic = document.getElementById('vdescrartic');
                                              var rprecart = document.getElementById('iprecart');
@@ -158,6 +164,7 @@
                                                                   codartid:codartid,
                                                                   descrartic:descrartic,
                                                                   codprov:codprov,
+                                                                  codarticulo:codarticulo,
                                                                   icateg:icateg,
                                                                   isubcat:isubcat,
                                                                   iconscapt:iconscapt,
@@ -206,6 +213,7 @@
                                                      $("#vdiasrecu").attr("readonly","readonly");
                                                      $("#vrecumarg").attr("readonly","readonly");
                                                      $("#vcodprov").attr("readonly","readonly");
+                                                    //  $("#codarticulo").attr("readonly","readonly");
 
                                                     $('.menu #newartic').html('Nuevo');
                                                     $('#arthead').html('Art&iacute;culo Nuevo');
