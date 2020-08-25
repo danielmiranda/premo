@@ -1,0 +1,1 @@
+ALTER TABLE articulos ADD deleted bool DEFAULT false;

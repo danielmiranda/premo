@@ -1,0 +1,12 @@
+ALTER VIEW `vinvio`
+AS SELECT
+   `a`.`codarticulo` AS `codartid`,
+   `a`.`descrartic` AS `descrartic`,
+   `a`.`precart` AS `precart`,
+   `u`.`un_nom` AS `un_nom`,concat('<div class="pull-right"><a href="javascript:void(0);" onclick="showinviolist(',`a`.`codartid`,')" style="text-decoration: underline;color: black;font-weight: bold;">',`a`.`stockart`,'</a></div>') AS `stockart`,concat('<div style="margin-left: auto;margin-right: auto;width: 70%;text-align: center;"><a href="javascript:void(0);" onclick="showinvin(',`a`.`codartid`,',0)" style="color:#0000FF;"><b><i class="fa fa-plus-square-o" aria-hidden="true" style="font-size:14px;color:#0000FF"></i></b></a></div>') AS `invin`,concat('<div style="margin-left: auto;margin-right: auto;width: 70%;text-align: center;"><a href="javascript:void(0);" onclick="showinvin(',`a`.`codartid`,',1)" style="color:#FF0000;"><b><i class="fa fa-minus-square-o" aria-hidden="true" style="font-size:14px;color:#FF0000"></i></b></a></div>') AS `invout`,date_format(`a`.`art_ult_io`,'%Y-%m-%d') AS `art_ult_io`,
+   `fgetinvavgdry`(`a`.`codartid`) AS `cons_prom`,
+   `a`.`art_cons_capt` AS `cons_capt`,case when coalesce(`a`.`art_cons_capt`,0) = 0 then (`a`.`art_dias_recup` + `a`.`art_recup_marg`) * `fgetinvavgdry`(`a`.`codartid`) else (`a`.`art_dias_recup` + `a`.`art_recup_marg`) * `a`.`art_cons_capt` end AS `Inv_Min`,
+   `a`.`art_dias_recup` + `a`.`art_recup_marg` AS `cicli_reemp`,case when coalesce(`a`.`art_cons_capt`,0) > 0 then round(`a`.`stockart` / `a`.`art_cons_capt`,0) when `fgetinvavgdry`(`a`.`codartid`) > 0 then round(`a`.`stockart` / `fgetinvavgdry`(`a`.`codartid`),0) else 0 end AS `dias_inv`,case when coalesce(`a`.`art_cons_capt`,0) > 0 then round(`a`.`stockart` / `a`.`art_cons_capt`,0) - (`a`.`art_dias_recup` + `a`.`art_recup_marg`) when `fgetinvavgdry`(`a`.`codartid`) > 0 then round(`a`.`stockart` / `fgetinvavgdry`(`a`.`codartid`),0) - (`a`.`art_dias_recup` + `a`.`art_recup_marg`) else 0 end AS `dias_inv_net`,case when coalesce(`a`.`art_cons_capt`,0) > 0 then curdate() + interval (round(`a`.`stockart` / `a`.`art_cons_capt`,0) - (`a`.`art_dias_recup` + `a`.`art_recup_marg`)) day when `fgetinvavgdry`(`a`.`codartid`) > 0 then curdate() + interval (round(`a`.`stockart` / `fgetinvavgdry`(`a`.`codartid`),0) - (`a`.`art_dias_recup` + `a`.`art_recup_marg`)) day else curdate() end AS `prox_cpra`,
+   `a`.`categid` AS `categid`,
+   `a`.`sctid` AS `sctid`
+FROM (`articulos` `a` join `unidades` `u` on(`a`.`stk_unid` = `u`.`un_id`));
