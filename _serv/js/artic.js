@@ -75,14 +75,24 @@
                                                                 },
                                                            success: function (resp)
                                                            {
-                                                             oTable.fnDraw();
-                                                            $('.menu li.active').removeClass('active');
-                                                            $('.menu #artlist').addClass('active');
-                                                            //ocultamos divisiones, mostramos la seleccionada
-                                                            $('.content').css('display', 'none');
-                                                            clearartic();
-                                                            $('.artlist').fadeIn();
-                                                            $('#msjalert').modal('hide');
+                                                             if(!resp.success){
+                                                              //alert(resp.Error);
+                                                              console.log(resp.success);
+                                                              swal('Error!', resp.Error, 'warning');
+                                                             } else {
+                                                              oTable.fnDraw();
+                                                              $('.menu li.active').removeClass('active');
+                                                              $('.menu #artlist').addClass('active');
+                                                              //ocultamos divisiones, mostramos la seleccionada
+                                                              $('.content').css('display', 'none');
+                                                              clearartic();
+                                                              $('.artlist').fadeIn();
+                                                              $('#msjalert').modal('hide');
+                                                             }
+
+                                                          },
+                                                          error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                                                            alert("Status: " + textStatus); alert("Error: " + errorThrown); 
                                                           }
                                                        });
                                                     }

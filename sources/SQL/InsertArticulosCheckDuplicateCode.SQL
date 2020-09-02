@@ -4,7 +4,7 @@ DELIMITER $$
 
 CREATE TRIGGER InsertArticulosCheckDuplicateCode 
 BEFORE INSERT ON articulos
-FOR EACH ROW
+FOR EACH ROW 
 BEGIN
 
     IF (SELECT COUNT(*) FROM articulos aa 

@@ -36,7 +36,13 @@
                                        );
                      $artid = $db->insert ('articulos', $datartic);
 
-                     $result_array = array('artid'=>$artid);
+                     if($artid){
+                        $result_array = array('artid'=>$artid, 'success'=>true);
+                        //array('success'=>'true')
+                     } else {
+                        $result_array = array('Error' => 'Codigo de articulo duplicado', 'success'=>false);
+                     }
+                     
                      echo json_encode($result_array);
                      return;
                      exit(0);
