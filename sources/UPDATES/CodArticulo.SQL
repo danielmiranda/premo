@@ -122,3 +122,30 @@ AS SELECT
 FROM (`articulos` `a` join `unidades` `u` on(`a`.`stk_unid` = `u`.`un_id`));
 
 
+/*.TRIGGER PARA EVITAR EL INSERT CON CODIGO DE ARTICULO DUPLICADO */
+DELIMITER $$
+
+CREATE TRIGGER InsertArticulosCheckDuplicateCode 
+BEFORE INSERT ON articulos
+FOR EACH ROW
+BEGIN
+
+    IF (SELECT COUNT(*) FROM articulos aa 
+        WHERE aa.codarticulo = new.codarticulo AND aa.deleted <> 1)
+    THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Error: Codigo de articulo duplicado';
+    END IF;
+
+END$$
+
+DELIMITER ;
+
+
+/**/
+SELECT *
+-- SELECT COUNT(*)
+ FROM articulos aa 
+        WHERE aa.codarticulo = 888888 AND aa.deleted <> 1
+        
+INSERT INTO articulos (`codartid`, `descrartic`, `codarticulo`) VALUES(73049, 'descripcion','888888');
