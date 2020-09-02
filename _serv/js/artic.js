@@ -119,7 +119,7 @@
                                                             $("#iconscapt").removeAttr("readonly");
                                                             $("#vdiasrecu").removeAttr("readonly");
                                                             $("#vrecumarg").removeAttr("readonly");
-                                                            $("#vcodprov").removeAttr("readonly");
+                                                            //$("#vcodprov").removeAttr("readonly");
                                                             $("#codarticulo").removeAttr("readonly");
                                                             $('#artictdsave').html('<button id="saveartic" class="btn btn-primary" type="button" onclick="saveupdart()"><i class="fa fa-pencil-square-o"></i> Guardar</button>');
                                                             dcmaxrow = resp.reng;
@@ -246,13 +246,15 @@
                                                      $("#istkunid").select2();
                                                      $('#vdiasrecu').val('0');
                                                      $('#vrecumarg').val('0');
+                                                     $('#vcodprov').val('');
+                                                     $('#codarticulo').val('');
                                                      $('#iprecart').val('0.00');
                                                      $('#artictdsave').html('<button id="saveartic" class="btn btn-primary" type="button" onclick="savenewart()"><i class="fa fa-plus"></i> Guardar</button>');
 
                                                      $("#iconscapt").attr("readonly","readonly");
                                                      $("#vdiasrecu").attr("readonly","readonly");
                                                      $("#vrecumarg").attr("readonly","readonly");
-                                                     $("#vcodprov").attr("readonly","readonly");
+                                                    // $("#vcodprov").attr("readonly","readonly");
                                                     //  $("#codarticulo").attr("readonly","readonly");
 
                                                     $('.menu #newartic').html('Nuevo');
